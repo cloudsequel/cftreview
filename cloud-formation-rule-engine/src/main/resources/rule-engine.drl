@@ -1,0 +1,82 @@
+package KieRule;
+
+import com.ruleengine.model.*;
+import java.util.List;
+
+global List<String> globalVar;
+
+rule "Bucket Policy Type"
+when
+s3BucketPolicy: S3BucketPolicy(type!="AWS::S3::BucketPolicy");
+then
+System.out.println("wrong bucket policy type name");
+globalVar.add("wrong bucket policy type name");
+end;
+
+
+rule "Bucket Name Validation"
+when
+s3BucketPolicy: S3BucketPolicy(properties.bucket.getRef()==""||properties.bucket.getRef()==null);
+then
+System.out.println("bucket name is empty/null");
+globalVar.add("bucket name is empty/null");
+end;
+
+
+rule "Bucket Policy Document Statement"
+when
+s3BucketPolicy: S3BucketPolicy(properties.policyDocument.getStatement()==null||
+properties.policyDocument.getStatement()==""||
+properties.policyDocument.getStatement().empty == true);
+then
+System.out.println("policy document statement is empty/null");
+globalVar.add("policy document statement is empty/null");
+end;
+
+
+rule "Bucket Policy Document Action"
+when
+s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getActionn()==null||
+properties.policyDocument.getStatement().get(0).getActionn().size()<1||
+properties.policyDocument.getStatement().get(0).getActionn() contains "")
+then
+System.out.println("policy document action empty/null");
+globalVar.add("policy document action empty/null");
+end;
+
+
+rule "Bucket Policy Document Effect"
+when
+s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getEffect()==null||
+properties.policyDocument.getStatement().get(0).getEffect()=="")
+then
+System.out.println("**policy document effect empty/null***");
+globalVar.add("policy document effect empty/null");
+end;
+
+
+rule "Bucket Policy Document Pricipal"
+when
+s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getPrincipal()==null||
+properties.policyDocument.getStatement().get(0).getPrincipal()=="")
+then
+System.out.println("**policy document principal empty/null***");
+globalVar.add("policy document principal empty/null");
+end;
+
+
+rule "Bucket Policy Document AWS Referer"
+when
+s3BucketPolicy:S3BucketPolicy($awsRefere:properties.policyDocument.getStatement().get(0).getCondition().getStringLike().getAwsReferer() contains "")
+then
+System.out.println("**policy document aws referer url empty/null***");
+globalVar.add("policy document aws referer url  empty/null");
+end;
+
+
+rule "Error Messages"
+when
+s3BucketPolicy: S3BucketPolicy();
+then
+s3BucketPolicy.setErrorMessages(globalVar);
+end;
