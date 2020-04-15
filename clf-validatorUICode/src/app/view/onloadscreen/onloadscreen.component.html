@@ -1,0 +1,52 @@
+<div class="">
+<app-header></app-header>
+
+<div class="container-fluid">
+  <section class="uploadSection"> 
+  <div class="row">
+    <!-- <label for="file-upload" class="custom-file-upload">
+      <i class="fa fa-cloud-upload"></i> Custom Upload
+  </label> 
+    <input type="file" id="file-upload" name="files" (change)="uploadFile($event)" />-->
+    
+
+    <!-- <div id="upload_button">
+      <label>
+        <input type="file" id="file-upload" name="files" (change)="uploadFile($event)" />
+        <span class="btn btn-primary">Upload files</span>
+      </label>
+    </div> -->
+
+    <div class="file-upload">
+      <div class="file-select">
+        <div class="file-select-button" id="fileName">Choose File</div>
+        <div class="file-select-name" id="noFile">no file chosen</div> 
+        <input type="file" name="chooseFile" id="chooseFile" (change)="uploadFile($event)" >
+      </div>
+    </div>
+    
+  </div>
+</section>
+<br>
+<section class="previewSection" [ngClass]="{'scrollScreen': jsonValueExist}">
+  <div class="container errorMessageDis" *ngIf="displayError">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" (click)="closeAlert()"> <span aria-hidden="true">&times;</span></button>  
+    <strong>{{displayErrorMessage}}</strong>
+  </div>
+</div>
+  <pre>{{jsonPreview}}</pre>
+ 
+</section>
+<br>
+<section>
+  <div class="container" style="text-align: center">
+  <button type="button" [ngClass]="{'mousePointer': disableButton}" (click)="fileUpload()"[disabled]="displayError" class="btn btn-primary customClass"><i class="fa fa-upload" aria-hidden="true"></i>Upload</button>
+  
+  <button type="button"  class="btn btn-primary customClass" (click)="clearScreen()">Clear</button>
+
+</div>
+</section>
+</div>
+</div>
+
