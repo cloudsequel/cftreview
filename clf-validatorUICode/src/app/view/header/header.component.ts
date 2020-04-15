@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  dateDisplay:number=Date.now();
+  dateDisplay:number;
  
-  constructor() { }
+  constructor() { 
+    setInterval(() => {
+      this.dateDisplay = Date.now();
+    }, 1000);
+  }
 
   ngOnInit(): void {
 // this.dateDisplay=new Date();
