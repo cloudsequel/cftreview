@@ -11,16 +11,10 @@ public class S3BucketPolicy {
     }
 
     public List<String> getErrorMessages() {
-        if (null==errorMessages){
-            System.out.println("888888888888");
-            return new ArrayList<String>();
-        }
         return errorMessages;
     }
 
     public void setErrorMessages(List<String> errorMessages) {
-        System.out.println("errorMessages=================");
-        System.out.println(errorMessages);
         this.errorMessages = errorMessages;
     }
 
