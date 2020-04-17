@@ -9,7 +9,7 @@ rule "Bucket Policy Type"
 when
 s3BucketPolicy: S3BucketPolicy(type!="AWS::S3::BucketPolicy");
 then
-globalVar.add("wrong bucket policy type name");
+globalVar.add("Invalid bucket policy type name");
 end;
 
 
@@ -19,7 +19,7 @@ s3BucketPolicy: S3BucketPolicy((properties.bucket.getRef()!=""||
 properties.bucket.getRef()!=null) &&
 properties.bucket.getRef() not matches "^([a-z0-9\\-\\.]+)");
 then
-globalVar.add("bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-)");
+globalVar.add("Bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-)");
 end;
 
 
@@ -29,7 +29,7 @@ s3BucketPolicy: S3BucketPolicy(properties.policyDocument.getStatement()==null||
 properties.policyDocument.getStatement()==""||
 properties.policyDocument.getStatement().empty == true);
 then
-globalVar.add("policy document statement is empty/null");
+globalVar.add("Statement is empty/null");
 end;
 
 
@@ -39,7 +39,7 @@ s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).
 properties.policyDocument.getStatement().get(0).getActionn().size()<1||
 properties.policyDocument.getStatement().get(0).getActionn() contains "")
 then
-globalVar.add("policy document action empty/null");
+globalVar.add("Action is empty/null");
 end;
 
 
@@ -49,7 +49,7 @@ s3BucketPolicy : S3BucketPolicy($listofactions :properties.policyDocument.getSta
 value : String() from $listofactions
 Boolean(booleanValue == true) from value contains "*"
 then
-globalVar.add("action should not be \"*\"");
+globalVar.add("Action should not have \"*\"");
 end;
 
 
@@ -58,7 +58,7 @@ when
 s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getEffect()==null||
 properties.policyDocument.getStatement().get(0).getEffect()=="")
 then
-globalVar.add("effect is empty/null");
+globalVar.add("Effect is empty/null");
 end;
 
 
@@ -66,16 +66,16 @@ rule "Bucket Policy Document Effect for *"
 when
 s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getEffect().contains("*"))
 then
-globalVar.add("effect should not be \"*\"");
+globalVar.add("Effect should not have \"*\"");
 end;
 
 
 rule "Bucket Policy Document Effect should be allow or deny"
 when
-s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getEffect()!="Allow"||
-properties.policyDocument.getStatement().get(0).getEffect()!="Deny")
+s3BucketPolicy : S3BucketPolicy(!properties.policyDocument.getStatement().get(0).getEffect().equals("Allow") &&
+!properties.policyDocument.getStatement().get(0).getEffect().equals("Deny"))
 then
-globalVar.add("effect should be Allow or Deny");
+globalVar.add("Effect should be Allow or Deny only");
 end;
 
 
@@ -84,7 +84,7 @@ when
 s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getPrincipal()==null||
 properties.policyDocument.getStatement().get(0).getPrincipal()=="")
 then
-globalVar.add("policy document principal empty/null");
+globalVar.add("Principal is empty/null");
 end;
 
 
@@ -92,7 +92,7 @@ rule "Bucket Policy Document Pricipal for *"
 when
 s3BucketPolicy : S3BucketPolicy(properties.policyDocument.getStatement().get(0).getPrincipal().contains("*"))
 then
-globalVar.add("principal should not be \"*\"");
+globalVar.add("Principal should not have \"*\"");
 end;
 
 
@@ -101,16 +101,26 @@ when
 s3BucketPolicy:S3BucketPolicy(properties.policyDocument.getStatement().get(0).getCondition().getStringLike()!=null &&
 properties.policyDocument.getStatement().get(0).getCondition().getStringLike().getAwsReferer() contains "")
 then
-globalVar.add("policy document aws referer url null/empty");
+globalVar.add("AWS Referer url is null/empty");
+end;
+
+
+rule "Bucket Policy Document AWS Referer having *"
+when
+s3BucketPolicy:S3BucketPolicy(properties.policyDocument.getStatement().get(0).getCondition().getStringLike()!=null &&
+properties.policyDocument.getStatement().get(0).getCondition().getStringLike().getAwsReferer() contains "*")
+then
+globalVar.add("AWS Referer should not have \"*\"");
 end;
 
 
 rule "Bucket Policy Document AWS SourceVpc is null/empty"
 when
 s3BucketPolicy:S3BucketPolicy(properties.policyDocument.getStatement().get(0).getCondition().getStringEquals()!=null &&
-properties.policyDocument.getStatement().get(0).getCondition().getStringEquals().getAwsSourceVpc() contains "")
+(properties.policyDocument.getStatement().get(0).getCondition().getStringEquals().getAwsSourceVpc() == "" ||
+properties.policyDocument.getStatement().get(0).getCondition().getStringEquals().getAwsSourceVpc() == null))
 then
-globalVar.add("policy document SourceVpc url null/empty");
+globalVar.add("SourceVpc url null/empty");
 end;
 
 
@@ -119,7 +129,7 @@ when
 s3BucketPolicy:S3BucketPolicy(properties.policyDocument.getStatement().get(0).getCondition().getStringEquals()!=null &&
 properties.policyDocument.getStatement().get(0).getCondition().getStringEquals().getAwsSourceVpc()contains("*"))
 then
-globalVar.add("sourceVpc should not contain *");
+globalVar.add("SourceVpc should not have \"*\"");
 end;
 
 
