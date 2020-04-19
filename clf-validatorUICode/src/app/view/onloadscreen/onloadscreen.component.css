@@ -41,34 +41,44 @@ pre{
     cursor: pointer;
 } */
 
-/* #upload_button {
-    display: inline-block;
-  }
-  #upload_button input[type=file] {
-    display:none;
-  } */
+  .file-upload{
+      display:block;text-align:center;font-family: Helvetica, Arial, 
+    sans-serif;font-size: 14px;
+    width: 265px;
 
-  .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, 
-    sans-serif;font-size: 14px;}
+}
     
-.file-upload .file-select
+.file-select
 {
     display:block;border: 1.5px solid  rgb(105, 113, 122);color: #1d1e1f;cursor:pointer;height:40px;
-    line-height:40px;text-align:left;background:#ecf1f7;overflow:hidden;position:relative;border-radius:8px;
+    line-height: 11px;text-align:left;background:#ecf1f7;overflow:hidden;position:relative;border-radius:8px;
 }
-.file-upload .file-select .file-select-button
+.file-select-button
 {
     background:#759eb2;
-    padding:0 10px;
     display:inline-block;
     height:40px;
-    line-height:40px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-top: 15px;
+    padding-right: 10px;
 }
-.file-upload .file-select .file-select-name
+
+.file-select-name
+{
+    white-space: nowrap;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding: 0 10px;
+}
+/* .file-upload .file-select .file-select-name
 {
     line-height:40px;display:inline-block;padding:0 10px;
-}
-.file-upload .file-select:hover
+   
+} */
+.file-select:hover
 {
     border-color:#2c2d2e;transition:all .2s ease-in-out;
     -moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;
@@ -97,7 +107,16 @@ pre{
 .file-upload .file-select input[type=file]
 {
     z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;
-    top:0;left:0;opacity:0;filter:alpha(opacity=0);
+    top:0;left:0;opacity:0;filter:alpha(opacity=0); border: 0;
+    /* clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px; */
+
+
 }
 .file-upload .file-select.file-select-disabled
 {
@@ -113,21 +132,22 @@ pre{
     background:#FFFFFF;
     overflow:hidden;
     position:relative;
-}
-.file-upload .file-select.file-select-disabled:hover .file-select-button
+} 
+ .file-upload .file-select.file-select-disabled:hover .file-select-button
 {
-    background:#dce4ec;
+    background:#e4e5e7;
     color:#666666;
     padding:0 10px;
     display:inline-block;
     height:40px;
     line-height:40px;
-}
-.file-upload .file-select.file-select-disabled:hover .file-select-name
+} 
+ .file-upload .file-select.file-select-disabled:hover .file-select-name
 {
     line-height:40px;
-    display:inline-block;
+    display:initial;
     padding:0 10px;
+    
 }
 
 .customClass
@@ -150,10 +170,26 @@ pre{
     -o-transition:all .2s ease-in-out;
 }
 
+.viewCustom{
+    background-color: #759eb2;
+    border-color: rgba(0, 0, 0, 0.14);
+    color: #2b2727;
+    border: 1px solid rgb(105, 113, 122);
+    border-radius: 8px; 
+}
+
+.viewCustom:hover
+{
+    background-color: #373738;
+    color:#FFFFFF;
+    border-color:#2c2d2e;transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+}
+
 .errorMessageDis
 {
     text-align: center;
-    width: 400px;
     padding: 25px;
 }
 
@@ -164,3 +200,48 @@ pre{
 .scrollScreen{
  overflow:scroll;
 }
+
+
+
+input[type="file"] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+  }
+  
+  .chooseFileCss {
+    background: #759eb2;
+    border: 1.5px solid  rgb(105, 113, 122);color: #1d1e1f;
+   
+    cursor: pointer;
+    display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: inherit;
+    font-weight: 600;
+    outline: none;
+    padding: 1rem 25px;
+    position: relative;
+    transition: all 0.3s;
+    border-radius: 8px;
+  }
+  
+  .chooseFileCss:hover{
+    background-color: #070707;
+    color:#fff
+  }
+
+  .textAreaSection
+  {
+    height: 347px;
+    width: -webkit-fill-available;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    resize: none;
+    background: #c3cbd440;
+    border-radius: 9px;
+    -moz-box-shadow:    inset 0 0 10px #8caaca;
+    -webkit-box-shadow: inset 0 0 10px #8caaca;
+    box-shadow:         inset 0 0 10px #8caaca;
+    word-break: break-all;
+    
+  }

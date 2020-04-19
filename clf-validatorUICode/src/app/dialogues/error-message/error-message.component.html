@@ -1,0 +1,10 @@
+<mat-dialog-content>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span class="alert-heading" style="font-size: medium;">Error!</span><p> {{failureMessage}} </p>
+      </div>
+    </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="closeAlertFailure()">Close</button>
+</mat-dialog-actions>

@@ -10,14 +10,25 @@ import { OnloadscreenComponent } from './view/onloadscreen/onloadscreen.componen
 import { FormsModule } from '@angular/forms';
 import { UploadFunctionService } from './upload-function.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MessageDisplayComponent } from './view/message-display/message-display.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TableViewComponent } from './view/table-view/table-view.component'
+import {MatTableModule} from '@angular/material/table';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ErrorMessageComponent } from './dialogues/error-message/error-message.component';
+import { SuccessMessageComponent } from './dialogues/success-message/success-message.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    OnloadscreenComponent
+    OnloadscreenComponent,
+    MessageDisplayComponent,
+    TableViewComponent,
+    ErrorMessageComponent,
+    SuccessMessageComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -26,10 +37,15 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule, 
+    MatDialogModule,
+    MatTableModule,
+    MatTooltipModule
+    
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MessageDisplayComponent,ErrorMessageComponent,SuccessMessageComponent]
 })
 export class AppModule { }

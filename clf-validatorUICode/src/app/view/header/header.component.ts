@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-// this.dateDisplay=new Date();
+
   }
 
 
