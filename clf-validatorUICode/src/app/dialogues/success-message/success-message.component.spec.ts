@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {OnloadscreenComponent} from './onloadscreen.component';
+import {SuccessMessageComponent} from './success-message.component';
 
-describe('OnloadscreenComponent', () => {
-  let component: OnloadscreenComponent;
-  let fixture: ComponentFixture<OnloadscreenComponent>;
+describe('SuccessMessageComponent', () => {
+  let component: SuccessMessageComponent;
+  let fixture: ComponentFixture<SuccessMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OnloadscreenComponent]
+      declarations: [SuccessMessageComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OnloadscreenComponent);
+    fixture = TestBed.createComponent(SuccessMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,17 @@
+<mat-dialog-content style="height:305px" id="style-8">
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span class="alert-heading" style="font-size: medium;">Error!</span>
+  </div>
+  <div class="errorList">
+    <ul>
+      <li *ngFor="let errorMessage of messageValue">
+        <p> {{errorMessage}} </p>
+      </li>
+    </ul>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="closeAlert()">Close</button>
+</mat-dialog-actions>

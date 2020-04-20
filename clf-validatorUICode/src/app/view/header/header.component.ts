@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,20 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  dateDisplay:number;
- 
-  constructor() { 
+  dateDisplay: number;
+
+  constructor() {
     setInterval(() => {
       this.dateDisplay = Date.now();
     }, 1000);
   }
 
   ngOnInit(): void {
-// this.dateDisplay=new Date();
+
   }
 
 
-  
-
- 
 }
