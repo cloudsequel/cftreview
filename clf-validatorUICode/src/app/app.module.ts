@@ -17,6 +17,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {ErrorMessageComponent} from './dialogues/error-message/error-message.component';
 import {SuccessMessageComponent} from './dialogues/success-message/success-message.component';
+import { ContentViewmodalComponent } from './dialogues/content-viewmodal/content-viewmodal.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {SuccessMessageComponent} from './dialogues/success-message/success-messa
     TableViewComponent,
     ErrorMessageComponent,
     SuccessMessageComponent,
+    ContentViewmodalComponent
 
   ],
   imports: [
@@ -46,7 +48,7 @@ import {SuccessMessageComponent} from './dialogues/success-message/success-messa
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
-  entryComponents: [MessageDisplayComponent, ErrorMessageComponent, SuccessMessageComponent]
+  entryComponents: [MessageDisplayComponent, ErrorMessageComponent, SuccessMessageComponent,ContentViewmodalComponent]
 })
 export class AppModule {
 }

@@ -20,17 +20,17 @@
 
 
       <!-- <ng-container matColumnDef="property">
-          <mat-header-cell *matHeaderCellDef>Property</mat-header-cell>
-          <mat-cell *matCellDef="let data">{{data.property}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef>FileName</mat-header-cell>
+          <mat-cell *matCellDef="let data">{{data.fileName}}</mat-cell>
       </ng-container> -->
 
       <ng-container matColumnDef="createdAt">
         <mat-header-cell *matHeaderCellDef>Created Date</mat-header-cell>
-        <mat-cell *matCellDef="let data">{{data.createdAt | date}}</mat-cell>
+        <mat-cell *matCellDef="let data">{{data.createdAt | date:"medium"}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-row (click)="getRecord(row)" *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
   </div>
 </div>

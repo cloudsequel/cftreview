@@ -16,8 +16,9 @@ export class UploadFunctionService {
   }
 
 
-  fileUpload(jsonObj): Observable<any> {
+  fileUpload(jsonObj,fileName): Observable<any> {
     // let httpBody = new HttpParams();
+    
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Cache-Control': 'no-cache,no-store',
@@ -26,7 +27,7 @@ export class UploadFunctionService {
     let options = {
       headers: httpHeaders
     };
-    return this.http.post<any>('http://localhost:8080/clf/validate', jsonObj, options)
+    return this.http.post<any>('http://localhost:8080/clf/validate?fileName='+fileName, jsonObj, options)
 
   }
 }

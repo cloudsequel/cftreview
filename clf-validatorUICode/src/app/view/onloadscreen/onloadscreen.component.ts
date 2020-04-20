@@ -113,7 +113,8 @@ export class OnloadscreenComponent implements OnInit {
     this.disableButton = true;
 
     const data = JSON.parse(this.jsonPreview);
-    this.uploadservice.fileUpload(data).subscribe((res: any) => {
+    const fileName=this.filename;
+    this.uploadservice.fileUpload(data,fileName).subscribe((res: any) => {
       if (res.length === 0) {
         this.displaySuccessMessage = 'Script is validated successfully';
         this.matDialog.open(SuccessMessageComponent, {
