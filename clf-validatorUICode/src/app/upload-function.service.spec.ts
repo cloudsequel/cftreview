@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { UploadFunctionService } from './upload-function.service';
+import {UploadFunctionService} from './upload-function.service';
 
 describe('UploadFunctionService', () => {
   let service: UploadFunctionService;

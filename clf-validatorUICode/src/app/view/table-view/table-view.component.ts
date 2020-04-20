@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UploadFunctionService } from 'src/app/upload-function.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UploadFunctionService} from 'src/app/upload-function.service';
+import {MatTableDataSource} from '@angular/material/table';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-table-view',
@@ -10,28 +10,27 @@ import { Router } from '@angular/router';
 })
 export class TableViewComponent implements OnInit {
   displayedColumns: string[];
-  dataSource =new MatTableDataSource();
-  constructor(private uploadservice: UploadFunctionService,private router:Router) { }
+  dataSource = new MatTableDataSource();
+
+  constructor(private uploadservice: UploadFunctionService, private router: Router) {
+  }
 
   ngOnInit(): void {
-    this.displayedColumns= ['id', 'type','createdAt']
+    this.displayedColumns = ['id', 'type', 'createdAt'];
     this.getUploadedScripts();
   }
 
 
-  getUploadedScripts()
-  {
+  getUploadedScripts() {
     this.uploadservice.getAllScripts().subscribe((res: any) => {
-      this.dataSource=res;
+      this.dataSource = res;
 
-  },err=>
-  {
+    }, err => {
 
-  })
-}
+    });
+  }
 
-gotoHome()
-{
-  this.router.navigate([`clfHome`]);
-}
+  gotoHome() {
+    this.router.navigate([`clfHome`]);
+  }
 }

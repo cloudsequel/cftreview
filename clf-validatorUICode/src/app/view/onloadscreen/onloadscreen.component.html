@@ -1,10 +1,9 @@
+<app-header></app-header>
 
-  <app-header></app-header>
-
-  <div class="container-fluid">
-    <section class="uploadSection">
-      <div class="row">
-<div class="col-md-10">
+<div class="container-fluid">
+  <section class="uploadSection">
+    <div class="row">
+      <div class="col-md-10">
         <div class="file-upload">
           <div class="file-select">
             <div class="file-select-button">Choose File</div>
@@ -16,33 +15,34 @@
       <div class="col-md-2">
         <button type="button" class="btn btn-primary viewCustom" (click)="gotoView()">View History</button>
       </div>
-      </div>
-    </section>
-    <br>
-    <div class="row" style="position: absolute;" *ngIf="disableEdit" >
-      <i class="fa fa-pencil" matTooltip="Edit Content" style="position: absolute;font-size: 18px;
+    </div>
+  </section>
+  <br>
+  <div class="row" style="position: absolute;" *ngIf="disableEdit">
+    <i class="fa fa-pencil" matTooltip="Edit Content" style="position: absolute;font-size: 18px;
       left: 1227px;
       top: -20px;" (click)="editJsonContent()"></i>
-    </div>
-    <div class="row">
+  </div>
+  <div class="row">
     <!-- <section class="previewSection" id="style-7" [ngClass]="{'scrollScreen': showScroll}"> -->
-      <div class="col-md-12">
-     <textarea id="style-7" class="textAreaSection" readonly ngDefaultControl 
-      [(ngModel)]="jsonPreview">{{jsonPreview}}
+    <div class="col-md-12">
+     <textarea id="style-7" class="textAreaSection" readonly ngDefaultControl
+               [(ngModel)]="jsonPreview">{{jsonPreview}}
     </textarea>
     </div>
   </div>
-    <!-- </section> -->
-    <br>
-    <section>
-      <div class="container" style="text-align: center">
-        <button type="button" [ngClass]="{'mousePointer': disableButton}" (click)="fileUpload()"
-          [disabled]="disableButton" class="btn btn-primary customClass"><i class="fa fa-upload"
-            aria-hidden="true"></i>Upload</button>
-         <button type="button" class="btn btn-primary customClass" (click)="clearScreen()">Clear</button>
-         <button class="btn btn-primary customClass" *ngIf="editContent" (click)="saveAsProject(jsonPreview)">Save</button>
+  <!-- </section> -->
+  <br>
+  <section>
+    <div class="container" style="text-align: center">
+      <button type="button" [ngClass]="{'mousePointer': disableButton}" (click)="fileUpload()"
+              [disabled]="disableButton" class="btn btn-primary customClass"><i class="fa fa-upload"
+                                                                                aria-hidden="true"></i>Upload
+      </button>
+      <button type="button" class="btn btn-primary customClass" (click)="clearScreen()">Clear</button>
+      <button class="btn btn-primary customClass" *ngIf="editContent" (click)="saveAsProject(jsonPreview)">Save</button>
 
-         <!-- <file-save-as [fileContent]="fileData" *ngIf="editContent"></file-save-as> -->
-      </div>
-    </section>
-  </div>
+      <!-- <file-save-as [fileContent]="fileData" *ngIf="editContent"></file-save-as> -->
+    </div>
+  </section>
+</div>
