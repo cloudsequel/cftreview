@@ -2,32 +2,21 @@ package com.ruleengine.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
 public class ScriptPolicy {
-    private List<String> errorMessages;
+
+    @JsonProperty(value = "Type")
+    private String type;
+
+    @JsonProperty(value = "Properties")
+    private Properties properties;
 
     public ScriptPolicy() {
     }
 
-    public List<String> getErrorMessages() {
-        return errorMessages;
-    }
-
-    public void setErrorMessages(List<String> errorMessages) {
-        this.errorMessages = errorMessages;
-    }
-
-    public ScriptPolicy(List<String> errorMessages, String type, Properties properties) {
-        this.errorMessages = errorMessages;
+    public ScriptPolicy(String type, Properties properties) {
         this.type = type;
         this.properties = properties;
     }
-
-    @JsonProperty(value = "Type")
-    private String type;
-    @JsonProperty(value = "Properties")
-    private Properties properties;
 
     public String getType() {
         return type;

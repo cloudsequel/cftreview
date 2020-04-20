@@ -25,10 +25,11 @@ public class ClfRuleEngineServiceImpl implements ClfRuleEngineService {
 
     public List<String> validateClfScript(ScriptPolicy scriptPolicy, String fileName) throws JsonProcessingException {
         awsPolicyRepository.save(new AwsPolicy("S3Bucket", JsonUtil.convertObjectToJson(scriptPolicy), fileName, new Date()));
+        List<String> errorMessages = new ArrayList();
         session.insert(scriptPolicy);
-        session.setGlobal("globalVar", new ArrayList());
+        session.setGlobal("globalVar", errorMessages);
         session.fireAllRules();
-        return scriptPolicy.getErrorMessages();
+        return errorMessages;
     }
 
     public List<AwsPolicy> findAllScripts() {

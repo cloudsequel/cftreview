@@ -131,11 +131,3 @@ properties.policyDocument.getStatement().get(0).getCondition().getStringEquals()
 then
 globalVar.add("SourceVpc should not have \"*\"");
 end;
-
-
-rule "Error Messages"
-when
-sciptPolicy: ScriptPolicy();
-then
-sciptPolicy.setErrorMessages(globalVar);
-end;

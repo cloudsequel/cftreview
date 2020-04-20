@@ -5,13 +5,18 @@ import java.util.Date;
 
 @Entity
 public class AwsPolicy {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String type;
+
     @Column(length = 4000)
     private String property;
+
     private String fileName;
+
     private Date createdAt;
 
     public AwsPolicy(String type, String jsonStr, String fileName, Date date) {

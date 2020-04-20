@@ -2,8 +2,7 @@ package com.ruleengine.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class
-Bucket {
+public class Bucket {
 
     @JsonProperty(value = "Ref")
     private String ref;
