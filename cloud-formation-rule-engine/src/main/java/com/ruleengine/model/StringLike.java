@@ -23,7 +23,6 @@ public class StringLike {
     }
 
     public List<String> getAwsReferer() {
-        if (null==awsReferer) return null;
         return awsReferer;
     }
 

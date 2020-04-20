@@ -6,6 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Condition {
 
+    @JsonProperty(value = "StringLike")
+    private StringLike stringLike;
+
+    @JsonProperty(value = "StringEquals")
+    private StringEquals stringEquals;
+
+
     public Condition() {
     }
 
@@ -13,13 +20,6 @@ public class Condition {
         this.stringLike = stringLike;
         this.stringEquals = stringEquals;
     }
-
-    @JsonProperty(value = "StringLike")
-    private StringLike stringLike;
-
-    @JsonProperty(value = "StringEquals")
-    private StringEquals stringEquals;
-
 
     public StringLike getStringLike() {
         return stringLike;
@@ -30,7 +30,6 @@ public class Condition {
     }
 
     public StringEquals getStringEquals() {
-        if (null==stringEquals) return null;
         return stringEquals;
     }
 

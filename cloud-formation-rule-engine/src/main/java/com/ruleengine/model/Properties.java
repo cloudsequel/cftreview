@@ -3,8 +3,10 @@ package com.ruleengine.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Properties {
+
     @JsonProperty(value = "Bucket")
     private Bucket bucket;
+
     @JsonProperty(value = "PolicyDocument")
     private PolicyDocument policyDocument;
 

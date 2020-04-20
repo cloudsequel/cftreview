@@ -11,15 +11,17 @@ public class AwsPolicy {
     private String type;
     @Column(length = 4000)
     private String property;
+    private String fileName;
     private Date createdAt;
 
-    public AwsPolicy() {
+    public AwsPolicy(String type, String jsonStr, String fileName, Date date) {
+        this.type = type;
+        this.property = jsonStr;
+        this.fileName = fileName;
+        this.createdAt = date;
     }
 
-    public AwsPolicy(String type, String property, Date date) {
-        this.property = property;
-        this.type = type;
-        this.createdAt = date;
+    public AwsPolicy() {
     }
 
     public int getId() {
@@ -44,6 +46,14 @@ public class AwsPolicy {
 
     public void setProperty(String property) {
         this.property = property;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public Date getCreatedAt() {

@@ -5,16 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Statement {
-    public Statement() {
-    }
-
-    public Statement(List<String> actionn, String effect, Resource resource, String principal, Condition condition) {
-        this.actionn = actionn;
-        this.effect = effect;
-        this.resource = resource;
-        this.principal = principal;
-        this.condition = condition;
-    }
 
 
     @JsonProperty(value = "Action")
@@ -32,6 +22,17 @@ public class Statement {
 
     @JsonProperty(value = "Condition")
     private Condition condition;
+
+    public Statement() {
+    }
+
+    public Statement(List<String> actionn, String effect, Resource resource, String principal, Condition condition) {
+        this.actionn = actionn;
+        this.effect = effect;
+        this.resource = resource;
+        this.principal = principal;
+        this.condition = condition;
+    }
 
     public List<String> getActionn() {
         return actionn;

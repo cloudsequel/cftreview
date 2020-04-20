@@ -2,12 +2,12 @@ package com.ruleengine.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class S3BucketPolicy {
+public class ScriptPolicy {
     private List<String> errorMessages;
-    public S3BucketPolicy() {
+
+    public ScriptPolicy() {
     }
 
     public List<String> getErrorMessages() {
@@ -18,7 +18,7 @@ public class S3BucketPolicy {
         this.errorMessages = errorMessages;
     }
 
-    public S3BucketPolicy(List<String> errorMessages, String type, Properties properties) {
+    public ScriptPolicy(List<String> errorMessages, String type, Properties properties) {
         this.errorMessages = errorMessages;
         this.type = type;
         this.properties = properties;

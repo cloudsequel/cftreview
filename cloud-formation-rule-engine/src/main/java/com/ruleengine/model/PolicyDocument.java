@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class PolicyDocument {
+
+    @JsonProperty(value = "Statement")
+    private List<Statement> statement;
+
     public PolicyDocument() {
     }
 
     public PolicyDocument(List<Statement> statement) {
         this.statement = statement;
     }
-
-
-    @JsonProperty(value = "Statement")
-    private List<Statement> statement;
 
     public List<Statement> getStatement() {
         return statement;
