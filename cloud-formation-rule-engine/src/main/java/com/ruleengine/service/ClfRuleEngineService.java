@@ -1,38 +1,14 @@
 package com.ruleengine.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ruleengine.model.AwsPolicy;
-import com.ruleengine.model.S3BucketPolicy;
-import com.ruleengine.repository.AWSPolicyRepository;
-import org.kie.api.runtime.KieSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.ruleengine.model.ScriptPolicy;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@Service
-public class ClfRuleEngineService {
+public interface ClfRuleEngineService {
 
-    @Autowired
-    private AWSPolicyRepository awsPolicyRepository;
+    List<String> validateClfScript(ScriptPolicy scriptPolicy, String fileName) throws JsonProcessingException;
 
-    @Autowired
-    private KieSession session;
-
-    public List<String> validateClfScript(S3BucketPolicy s3BucketPolicy) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonStr = objectMapper.writeValueAsString(s3BucketPolicy);
-        awsPolicyRepository.save(new AwsPolicy("S3Bucket", jsonStr, new Date()));
-        session.insert(s3BucketPolicy);
-        session.setGlobal("globalVar", new ArrayList());
-        session.fireAllRules();
-        return s3BucketPolicy.getErrorMessages();
-    }
-
-    public List<AwsPolicy> findAllScripts() {
-        return (List<AwsPolicy>) awsPolicyRepository.findAll();
-    }
+    List<AwsPolicy> findAllScripts();
 }
