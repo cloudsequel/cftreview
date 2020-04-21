@@ -30,7 +30,8 @@ export class OnloadscreenComponent implements OnInit {
   editContent: boolean;
   disableEdit: boolean;
   fileData: any;
-
+  beforeEditContent:string;
+  hideCancel:boolean;
   constructor(private uploadservice: UploadFunctionService, private matDialog: MatDialog, private router: Router) {
   }
 
@@ -48,8 +49,19 @@ export class OnloadscreenComponent implements OnInit {
     const files = event.target.files;
     this.filename = files[0].name;
     document.getElementById('noFile').innerText = this.filename;
+    // plt-coresvcs-dev-use1a-lmda-nummsg-apitofifo
+   
+    // if(words.length=8)
+    // {
+    //   if(words[0]=="plt")
+    //   {
+
+     
     const ext = this.filename.substring(this.filename.lastIndexOf('.') + 1);
     if ((ext.toLowerCase() === 'json') || (files[0].type === 'application/json')) {
+      const words = this.filename.split('-');
+      if((words.length<=8) && (words[0]=="plt")){
+            
 
       const reader = new FileReader();
       reader.onloadend = (e) => {
@@ -65,7 +77,19 @@ export class OnloadscreenComponent implements OnInit {
         }
       };
       reader.readAsText(event.target.files[0]);
-    } else {
+    }
+  else{
+       this.matDialog.open(ErrorMessageComponent, {
+         disableClose: true,
+         data: {confirmationMessage: "Incorrect file name format.Please change the file name"}
+       });
+       document.getElementById('noFile').innerText = 'no file chosen';
+       this.fileInput.nativeElement.value = '';
+
+  }
+}
+    
+      else {
       this.jsonPreview = '';
       this.showScroll = false;
       this.displayErrorMessage = 'Invalid File type. Please Upload .json file';
@@ -73,12 +97,13 @@ export class OnloadscreenComponent implements OnInit {
         disableClose: true,
         data: {confirmationMessage: this.displayErrorMessage}
       });
-
+      document.getElementById('noFile').innerText = 'no file chosen';
+      this.fileInput.nativeElement.value = '';
       this.disableButton = true;
 
     }
-
   }
+
 
   isJsonValid(str) {
     try {
@@ -107,6 +132,7 @@ export class OnloadscreenComponent implements OnInit {
     this.fileInput.nativeElement.value = '';
     this.disableEdit = false;
     this.editContent = false;
+    this.hideCancel=false
   }
 
   fileUpload() {
@@ -146,14 +172,18 @@ export class OnloadscreenComponent implements OnInit {
   }
 
   editJsonContent() {
+    this.beforeEditContent="";
     this.editContent = true;
     document.getElementsByTagName('textarea')[0].readOnly = false;
-
+    this.beforeEditContent=this.jsonPreview;
+    this.hideCancel=true
   }
 
 
   saveAsProject(fileData) {
     this.editContent = false;
+    this.hideCancel=false;
+    document.getElementsByTagName('textarea')[0].readOnly = true;
     // you can enter your own file name and extension
     this.writeContents(fileData, this.filename, 'application/json');
   }
@@ -166,6 +196,14 @@ export class OnloadscreenComponent implements OnInit {
     // a.href = URL.createObjectURL(file);
     // a.download = fileName;
     // a.click();
+  }
+
+  cancelEditContent()
+  {
+    this.jsonPreview=this.beforeEditContent;
+    this.editContent=false;
+    this.hideCancel=false;
+    document.getElementsByTagName('textarea')[0].readOnly = true;
   }
 }
 

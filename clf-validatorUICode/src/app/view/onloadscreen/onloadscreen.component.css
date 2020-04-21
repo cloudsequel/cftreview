@@ -81,6 +81,7 @@ pre {
   text-overflow: ellipsis;
   display: inline-block;
   padding: 0 10px;
+  color: rgb(150, 149, 149);
 }
 
 /* .file-upload .file-select .file-select-name
@@ -272,5 +273,6 @@ input[type="file"] {
   -webkit-box-shadow: inset 0 0 10px #8caaca;
   box-shadow: inset 0 0 10px #8caaca;
   word-break: break-all;
+  outline: none;
 
 }

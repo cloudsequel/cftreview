@@ -16,6 +16,7 @@ filename:string;
   this.contentView=data.content;  
   this.id=this.contentView["id"];
   this.type=this.contentView["type"];
+  this.filename=this.contentView["fileName"];
   this.property=JSON.parse(this.contentView["property"]);
    }
 

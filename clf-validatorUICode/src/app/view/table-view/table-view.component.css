@@ -1,6 +1,6 @@
 mat-table {
   overflow: auto;
-  height: 500px;
+  height: 475px;
   background-color: #e0e0e0;
   table-layout: fixed;
   width: 1000px;
@@ -19,4 +19,17 @@ mat-table {
 
 .customAngle:active {
   color: #0c1011a8;
+}
+
+.customWidthClass{
+  flex: 0 0 85px;
+}
+
+.customWidthCss{
+  flex: 0 0 200px;
+}
+
+.customWidthfilename{
+  flex: 0 0 400px;
+  text-overflow: ellipsis;
 }

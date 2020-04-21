@@ -1,9 +1,10 @@
-<mat-dialog-content style="width:850px">
+<mat-dialog-content style="width:650px">
  <div class="alert alert-info" role="alert">
-<span class="alert-heading" style="font-size: medium;">Content View : </span>
+<p class="alert-heading" style="font-size: medium;text-align: center;">Script content</p>
+<span class="alert-heading" style="font-size:initial;">File Name: {{filename}}</span>
 </div>
 
-   <pre style="height:100px">{{property}}</pre> 
+   <pre id="style-7" style="height:200px">{{property | json}}</pre> 
 
     </mat-dialog-content>
 

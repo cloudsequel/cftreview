@@ -20,8 +20,11 @@
   <br>
   <div class="row" style="position: absolute;" *ngIf="disableEdit">
     <i class="fa fa-pencil" matTooltip="Edit Content" style="position: absolute;font-size: 18px;
-      left: 1227px;
+      left: 1200px;
       top: -20px;" (click)="editJsonContent()"></i>
+      <i class="fa fa-times" style="position: absolute;font-size: 18px;
+      left: 1227px;
+      top: -20px;" matTooltip="Cancel" *ngIf="hideCancel"(click)="cancelEditContent()"></i>
   </div>
   <div class="row">
     <!-- <section class="previewSection" id="style-7" [ngClass]="{'scrollScreen': showScroll}"> -->

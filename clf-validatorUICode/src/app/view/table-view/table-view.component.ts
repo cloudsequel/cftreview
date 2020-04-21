@@ -18,7 +18,7 @@ export class TableViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.displayedColumns = ['id', 'type', 'createdAt'];
+    this.displayedColumns = ['id', 'type', 'createdAt','fileName'];
     this.getUploadedScripts();
   }
 
